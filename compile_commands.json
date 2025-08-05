@@ -1,0 +1,16 @@
+[
+  {
+    "arguments": [
+      "/nix/store/67x7pknz0qa2j16x02idf0x98lpcspah-gcc-wrapper-14.3.0/bin/g++",
+      "-I/home/yrn/proj/gamingamiright/include",
+      "-std=gnu++17",
+      "-c",
+      "-o",
+      "CMakeFiles/game.dir/src/main.cpp.o",
+      "/home/yrn/proj/gamingamiright/src/main.cpp"
+    ],
+    "directory": "/home/yrn/proj/gamingamiright/build",
+    "file": "/home/yrn/proj/gamingamiright/src/main.cpp",
+    "output": "/home/yrn/proj/gamingamiright/build/CMakeFiles/game.dir/src/main.cpp.o"
+  }
+]
