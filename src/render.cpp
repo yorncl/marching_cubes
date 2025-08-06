@@ -102,13 +102,16 @@ void render_clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void render_object(int handle, Context &ctx) {
+void render_object(Object& obj, Context &ctx) {
+
+    int handle = obj.handle;
     RenderObject &robj = objects[handle];
 
     glBindVertexArray(robj.vao);
     glUseProgram(robj.sp.id);
 
     glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, obj.pos);
     int modelLoc = glGetUniformLocation(robj.sp.id, "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 

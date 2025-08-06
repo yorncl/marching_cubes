@@ -94,7 +94,7 @@ struct Context {
 };
 
 // object.cpp, code to build different objects
-Object build_cube();
+Object build_cube(glm::vec3);
 
 // shader.cpp
 // code to create and compile shaderprograms
@@ -111,7 +111,7 @@ void render_register_shaders(int handle, std::string path_v, std::string path_f)
 // code to update render target if needed
 void render_update_objects(int handle, Object &);
 // code to render different objects
-void render_object(int handle, Context&);
+void render_object(Object& , Context&);
 void render_clear();
 
 // Input API

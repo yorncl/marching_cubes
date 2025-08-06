@@ -24,7 +24,9 @@ Context populate_scene(Context &ctx) {
                         glm::vec3(0.0, 1.0, 0.0));
 
     // Adding objects that will appear in scene
-    ctx.objs.push_back(build_cube());
+    ctx.objs.push_back(build_cube(glm::vec3(0.0, 0.0, 5.0)));
+    ctx.objs.push_back(build_cube(glm::vec3(0.0, 5.0, 3.0)));
+    ctx.objs.push_back(build_cube(glm::vec3(5.0, 0.0, 4.0)));
     return ctx;
 }
 
@@ -53,7 +55,7 @@ void game_loop(Context &ctx) {
 
         // Render objects
         for (auto it = ctx.objs.begin(); it != ctx.objs.end(); it++) {
-            render_object(it->handle, ctx);
+            render_object(*it, ctx);
         }
 
         glfwSwapBuffers(ctx.window);

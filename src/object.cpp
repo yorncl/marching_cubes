@@ -1,6 +1,6 @@
 #include "vox.h"
 
-Object build_cube() {
+Object build_cube(glm::vec3 pos) {
     float cube_vertices[] = {
         -1.0f, -1.0f, -1.0f,                      // triangle 1 : begin
         -1.0f, -1.0f, 1.0f,  -1.0f, 1.0f,  1.0f,  // triangle 1 : end
@@ -31,6 +31,7 @@ Object build_cube() {
         0.673f, 0.211f, 0.457f, 0.820f, 0.883f, 0.371f, 0.982f, 0.099f, 0.879f};
 
     Object cube;
+    cube.pos = pos;
     cube.m.vertices.assign(
         cube_vertices, cube_vertices + (sizeof(cube_vertices) / sizeof(float)));
     cube.m.colors.assign(cube_colors,
