@@ -18,6 +18,7 @@ add_executable(game
     src/object.cpp
     src/field.cpp
     src/marching_cubes.cpp
+    src/raycast.cpp
 )
 
 target_include_directories(game PRIVATE ${GLFW_INCLUDE_DIRS})

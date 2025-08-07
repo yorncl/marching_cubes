@@ -41,6 +41,8 @@ Context populate_scene(Context &ctx) {
     //     }
     // }
     Object m = marching_mesh(ctx.f);
+    // hmmm not cool
+    ctx.f.object = &m;
 
     // for (int i = 0; i < m.m.vertices.size(); i++) {
     //     std::cout << m.m.vertices[i] << " ";

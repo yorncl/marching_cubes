@@ -347,11 +347,8 @@ Object marching_mesh(Field &f) {
                 // toggle color to see it better
                 bool dark = false;
                 for (int i = 0; i < 16; i += 3) {
-                    std::cout << edge[i];
-                    if (edge[i] == -1) {
-                        std::cout << std::endl;
+                    if (edge[i] == -1)
                         break;
-                    }
 
                     // Offsets of vertices by edge number
                     static glm::vec3 vertices_offsets[12] = {

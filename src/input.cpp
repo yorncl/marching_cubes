@@ -3,6 +3,7 @@
 #include <glm/geometric.hpp>
 
 bool input[500] = {false};
+bool mouse_click = false;
 
 void process_keys(GLFWwindow *window, int key, int scancode, int action,
                   int mods) {
@@ -42,6 +43,12 @@ void process_keys(GLFWwindow *window, int key, int scancode, int action,
     }
 }
 
+void mouse_button_callback(GLFWwindow *window, int button, int action,
+                           int mods) {
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+        mouse_click = true;
+}
+
 static bool firstMouse = true;
 static double lastX = 0;
 static double lastY = 0;
@@ -62,6 +69,32 @@ void process_input(Context &ctx) {
         ctx.camera.pos += ctx.camera.up * speed;
     if (input[GLFW_KEY_LEFT_CONTROL])
         ctx.camera.pos -= ctx.camera.up * speed;
+
+    if (mouse_click) {
+        glm::vec3 hit;
+        if (raycast(ctx.f, ctx.camera.pos, ctx.camera.front, hit))
+        {
+            printf("Raycast hit world coord: %f %f %f\n", hit.x, hit.y, hit.z);
+            hit -= ctx.f.pos;
+            printf("Raycast hit field coord: %f %f %f\n", hit.x, hit.y, hit.z);
+
+            field_fill_sphere(ctx.f, hit, 10);
+
+            // Object new_terrain = marching_mesh(ctx.f);
+            Object cube = build_cube(hit + ctx.f.pos, glm::vec3(1.0, 1.0, 1.0));
+
+            // TODO very naughty to do this in the input code...
+            // ctx.f.object->m = new_terrain.m;
+            // render_update_objects(ctx.f.object->handle, *ctx.f.object);
+            // new_terrain.handle = new_render_object();
+            // new_terrain.m.dirty = true;
+            // new_terrain.pos -= glm::vec3(-5.0, 0.0, 0.0);
+            cube.handle = new_render_object();
+            render_register_shaders(cube.handle, cube.sv, cube.sf);
+            ctx.objs.push_back(cube);
+        }
+        mouse_click = 0;
+    }
 
     glm::vec3 direction;
     direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
@@ -104,4 +137,5 @@ void setup_input(Context &ctx) {
     glfwSetKeyCallback(ctx.window, process_keys);
     glfwSetInputMode(ctx.window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetCursorPosCallback(ctx.window, mouse_callback);
+    glfwSetMouseButtonCallback(ctx.window, mouse_button_callback);
 }

@@ -86,6 +86,7 @@ struct Field {
     glm::vec3 pos;
     // the actual voxel grid
     std::vector<int> data;
+    Object* object;
 };
 
 // Top level structure
@@ -130,7 +131,11 @@ void process_input(Context &ctx);
 // related to the actual voxel data
 void field_setup(Context &ctx, int n, glm::vec3 pos);
 int field_query(Field&, int x, int y, int z);
+void field_fill_sphere(Field &f, glm::vec3 pos, float radius);
 
 // marching_cubes.cpp
 // Takes in the field, and returns an Object containing a mesh buidt from the field
 Object marching_mesh(Field&);
+
+// raycast.cpp
+bool raycast(Field &f, glm::vec3 pos, glm::vec3 v, glm::vec3& result);

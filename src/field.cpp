@@ -4,7 +4,7 @@
 #include <glm/geometric.hpp>
 #include <glm/glm.hpp>
 
-static void fill_sphere(Field &f, glm::vec3 pos, float radius) {
+void field_fill_sphere(Field &f, glm::vec3 pos, float radius) {
 
     int side = f.len;
     for (int x = 0; x < side; x++) {
@@ -12,8 +12,8 @@ static void fill_sphere(Field &f, glm::vec3 pos, float radius) {
             for (int z = 0; z < side; z++) {
                 glm::vec3 vpos =
                     glm::vec3(-side / 2 + x, -side / 2 + y, -side / 2 + z);
-                f.data[x * side * side + y * side + z] =
-                    glm::length(vpos - pos) <= radius ? 1.0 : 0.0;
+                if (glm::length(vpos - pos) <= radius)
+                    f.data[x * side * side + y * side + z] = 1;
             }
         }
     }
@@ -26,7 +26,7 @@ void field_setup(Context &ctx, int n, glm::vec3 pos) {
     f.pos = pos;
     f.len = n;
     f.data.assign(n * n * n, 0);
-    fill_sphere(f, glm::vec3(0.0, 0.0, -25.0), (float)7);
+    field_fill_sphere(f, glm::vec3(0.0, 0.0, -25.0), (float)4);
 }
 
 int field_query(Field &f, int x, int y, int z) {
