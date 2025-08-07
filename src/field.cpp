@@ -26,7 +26,7 @@ void field_setup(Context &ctx, int n, glm::vec3 pos) {
     f.pos = pos;
     f.len = n;
     f.data.assign(n * n * n, 0);
-    fill_sphere(f, glm::vec3(0.0, 0.0, 0.0), (float)n / 3);
+    fill_sphere(f, glm::vec3(0.0, 0.0, -25.0), (float)7);
 }
 
 int field_query(Field &f, int x, int y, int z) {

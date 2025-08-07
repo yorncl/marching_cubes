@@ -118,6 +118,9 @@ void render_update_objects(int handle, Object &);
 void render_object(Object& , Context&);
 void render_clear();
 
+// camera.cpp
+void camera_rotate(Camera&, float pitch, float yaw, float roll);
+
 // input.cpp
 // Keyboard/mouse that updates the camera's position
 void setup_input(Context &ctx);

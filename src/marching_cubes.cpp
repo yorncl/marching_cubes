@@ -341,8 +341,8 @@ Object marching_mesh(Field &f) {
                 // pointer to list of edges of our cube that are "active"
                 int *edge = triTable[index];
 
-                printf("Marched cube: edgeTable[%d], triTable[%d], edge(%p)\n",
-                       index, mesh, edge);
+                // printf("Marched cube: edgeTable[%d], triTable[%d], edge(%p)\n",
+                       // index, mesh, edge);
 
                 // toggle color to see it better
                 bool dark = false;

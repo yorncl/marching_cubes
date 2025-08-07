@@ -27,19 +27,19 @@ Context populate_scene(Context &ctx) {
     // ctx.objs.push_back(
     //     build_cube(glm::vec3(0.0, 0.0, 5.0), glm::vec3(1.0, 1.0, 1.0)));
 
-    int n = 20;
+    int n = 100;
     field_setup(ctx, n, glm::vec3(-n / 2, -n / 2, -n / 2));
-    for (int x = 0; x < n; x++) {
-        for (int y = 0; y < n; y++) {
-            for (int z = 0; z < n; z++) {
-                glm::vec3 pos = ctx.f.pos + glm::vec3(x, y, z);
-                float val = field_query(ctx.f, x, y, z);
-                glm::vec3 color = glm::vec3(val, val, val);
-                ctx.objs.push_back(
-                    build_unicolor_cube(pos, glm::vec3(0.1, 0.1, 0.1), color));
-            }
-        }
-    }
+    // for (int x = 0; x < n; x++) {
+    //     for (int y = 0; y < n; y++) {
+    //         for (int z = 0; z < n; z++) {
+    //             glm::vec3 pos = ctx.f.pos + glm::vec3(x, y, z);
+    //             float val = field_query(ctx.f, x, y, z);
+    //             glm::vec3 color = glm::vec3(val, val, val);
+    //             ctx.objs.push_back(
+    //                 build_unicolor_cube(pos, glm::vec3(0.1, 0.1, 0.1), color));
+    //         }
+    //     }
+    // }
     Object m = marching_mesh(ctx.f);
 
     // for (int i = 0; i < m.m.vertices.size(); i++) {
